@@ -24,20 +24,52 @@ class State:
     def blank_index(self) -> int:
         return self.tiles.index(0)
 
-    def neighbors(self) -> List["State"]:
-        """Retorna os estados filhos válidos a partir deste estado."""
-        # TODO: implemente a geração de estados filhos
-        raise NotImplementedError
+def neighbors(self) -> List["State"]:
+    filhos = []
 
-    def path(self) -> List["State"]:
-        """Retorna a sequência de estados do estado inicial até este."""
-        # TODO: implemente a reconstrução do caminho usando self.parent
-        raise NotImplementedError
+    pos = self.blank_index
+    linha, coluna = divmod(pos, 3)
 
-    def actions(self) -> List[str]:
-        """Retorna a sequência de ações do estado inicial até este."""
-        # TODO: implemente usando path()
-        raise NotImplementedError
+    movimentos = [
+        (-1, 0, "UP"),
+        (1, 0, "DOWN"),
+        (0, -1, "LEFT"),
+        (0, 1, "RIGHT")
+    ]
+
+    for dl, dc, acao in movimentos:
+        nl = linha + dl
+        nc = coluna + dc
+
+        if 0 <= nl < 3 and 0 <= nc < 3:
+            nova_pos = nl * 3 + nc
+
+            tiles = list(self.tiles)
+            tiles[pos], tiles[nova_pos] = tiles[nova_pos], tiles[pos]
+
+            filhos.append(
+                State(
+                    tuple(tiles),
+                    parent=self,
+                    action=acao,
+                    cost=self.cost + 1
+                )
+            )
+
+    return filhos
+  def path(self) -> List["State"]:
+    caminho = []
+    atual = self
+
+    while atual is not None:
+        caminho.append(atual)
+        atual = atual.parent
+
+    caminho.reverse()
+    return caminho
+
+def actions(self) -> List[str]:
+    return ion for estado in self.path()[1:]]
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, State) and self.tiles == other.tiles
