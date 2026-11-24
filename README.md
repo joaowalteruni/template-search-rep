@@ -1,6 +1,5 @@
 # 8-Puzzle — Busca em Espaço de Estados
 
-## O que implementar
 
 ### `puzzle/state.py`
 - `neighbors()` — gera os estados filhos a partir do espaço vazio
@@ -21,13 +20,13 @@
 
 ```
 ├── puzzle/
-│   ├── state.py        # State — IMPLEMENTAR neighbors, path, actions
+│   ├── state.py        # State — IMPLEMENTADO neighbors, path, actions
 │   ├── result.py       # SearchResult — não alterar
 │   └── base_search.py  # Interface BaseSearch — não alterar
 ├── algorithms/
-│   ├── bfs.py          ← IMPLEMENTAR
-│   ├── dfs.py          ← IMPLEMENTAR
-│   └── a_star.py       ← IMPLEMENTAR
+│   ├── bfs.py          ← IMPLEMENTADO
+│   ├── dfs.py          ← IMPLEMENTADO
+│   └── a_star.py       ← IMPLEMENTADO
 └── main.py
 ```
 
